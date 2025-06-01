@@ -1,6 +1,6 @@
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { CameraWebServer } from '../webcam/web-server.js';
-import { WebcamController } from '../webcam/controller.js';
+import { CameraWebServer } from '../webcam/web-server';
+import { WebcamController } from '../webcam/controller';
 
 export const selectCameraTool: Tool = {
   name: 'select_camera',

@@ -2,13 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import { promises as fs } from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 import open from 'open';
-import { WebcamController } from './controller.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { WebcamController } from './controller';
 
 export class CameraWebServer {
   private app: express.Application;
@@ -27,7 +22,6 @@ export class CameraWebServer {
   private setupMiddleware() {
     this.app.use(cors());
     this.app.use(express.json());
-    this.app.use(express.static(path.join(__dirname, '../../public')));
   }
 
   private setupRoutes() {
@@ -82,14 +76,7 @@ export class CameraWebServer {
 
     // Serve the HTML page
     this.app.get('/', async (req, res) => {
-      const htmlPath = path.join(__dirname, '../../public/index.html');
-      try {
-        const html = await fs.readFile(htmlPath, 'utf-8');
-        res.send(html);
-      } catch {
-        // If public/index.html doesn't exist, serve inline HTML
-        res.send(this.getInlineHTML());
-      }
+      res.send(this.getInlineHTML());
     });
   }
 

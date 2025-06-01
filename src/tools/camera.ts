@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { WebcamController } from '../webcam/controller.js';
+import { WebcamController } from '../webcam/controller';
 
 export const listCamerasTool: Tool = {
   name: 'list_cameras',

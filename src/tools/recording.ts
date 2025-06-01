@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { WebcamController } from '../webcam/controller.js';
+import { WebcamController } from '../webcam/controller';
 
 const StartRecordingArgsSchema = z.object({
   duration: z.number().min(1).max(3600).optional(),

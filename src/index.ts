@@ -8,17 +8,17 @@ import {
   ListToolsRequestSchema,
   ReadResourceRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
-import { WebcamController } from './webcam/controller.js';
+import { WebcamController } from './webcam/controller';
 import { 
   capturePhotoTool, 
   capturePhoto 
-} from './tools/capture.js';
+} from './tools/capture';
 import { 
   startRecordingTool, 
   stopRecordingTool,
   startRecording,
   stopRecording 
-} from './tools/recording.js';
+} from './tools/recording';
 import {
   listCamerasTool,
   getCameraSettingsTool,
@@ -26,13 +26,13 @@ import {
   listCameras,
   getCameraSettings,
   setCameraSettings
-} from './tools/camera.js';
+} from './tools/camera';
 import {
   selectCameraTool,
   getCurrentCameraTool,
   selectCamera,
   getCurrentCamera
-} from './tools/camera-ui.js';
+} from './tools/camera-ui';
 
 class WebcamMCPServer {
   private server: Server;
@@ -147,7 +147,7 @@ class WebcamMCPServer {
     });
 
     // Handle resource reads
-    this.server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+    this.server.setRequestHandler(ReadResourceRequestSchema, async (request: any) => {
       const { uri } = request.params;
 
       try {

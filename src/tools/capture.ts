@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { WebcamController } from '../webcam/controller.js';
+import { WebcamController } from '../webcam/controller';
 
 const CapturePhotoArgsSchema = z.object({
   width: z.number().min(320).max(3840).optional(),

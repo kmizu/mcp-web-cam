@@ -2,10 +2,18 @@
   "name": "@kmizu/mcp-web-cam",
   "version": "0.1.0",
   "description": "MCP server for controlling webcams",
-  "main": "./dist/index.js",
-  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "bin": {
-    "mcp-web-cam": "./dist/index.js"
+    "mcp-web-cam": "./dist/cjs/index.js"
   },
   "files": [
     "dist/",
@@ -14,8 +22,11 @@
     "package.json"
   ],
   "scripts": {
-    "build": "tsc",
-    "postbuild": "chmod +x dist/index.js",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "postbuild": "chmod +x dist/cjs/index.js && npm run build:package-json",
+    "build:package-json": "echo '{\"type\": \"module\"}' > dist/esm/package.json",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
     "lint": "eslint src --ext .ts",
